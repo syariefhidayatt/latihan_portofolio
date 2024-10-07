@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submit</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input,
+        select,
+        textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23555' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Formulir Kontak</h2>
+    <form id="contactForm">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="skill">Kategori:</label>
+        <select id="skill" name="skill">
+            <option value="">-- Pilih Kategori --</option>
+            <option value="Web Developer">Web Developer</option>
+            <option value="Front-end">Front-end</option>
+        </select>
+
+        <label for="pesan">Pesan:</label>
+        <textarea id="pesan" name="pesan" rows="10" placeholder="Masukkan Pesan"></textarea>
+
+        <button type="submit">Kirim</button>
+    </form>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var skill = document.getElementById('skill').value;
+            var pesan = document.getElementById('pesan').value;
+
+            var phoneNumber = "6285156675499"; // Nomor WhatsApp tujuan
+            var whatsappMessage = "Nama: " + name + "\nEmail: " + email + "\nKategori: " + skill + "\nPesan: " + pesan;
+
+            var encodedMessage = encodeURIComponent(whatsappMessage);
+            var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+
+            // Buka WhatsApp (atau WhatsApp Web) di tab baru
+            alert("Terima kasih! Anda akan diarahkan ke WhatsApp untuk mengirim pesan.");
+            window.open(whatsappUrl, '_self');
+
+            // Tampilkan pesan konfirmasi
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
